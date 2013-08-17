@@ -23,6 +23,10 @@ socket.on("newQuestion", function(data){
 var bg = {
   sendForm: function(action, data) {
     socket.emit(action, data);
+  },
+
+  sendQuestion: function(id) {
+    io.sockets.socket(id).emit('newQuestion', {question: question});
   }
 }
 // chrome.runtime.onMessage.addListener(

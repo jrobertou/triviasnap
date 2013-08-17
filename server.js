@@ -34,8 +34,13 @@ io.sockets.on('connection', function (socket) {
     }
   });
 
+  socket.on('question_send', function(data){
+    questions[socket.id][data.idtarget] = {question: data.question, answer: data.answer};
+    io.sockets.socket(data.id).emit('newQuestion', {question: question, idAsker: socket.id});
+  });
+
   socket.on('question_submit', function(data){
-    socket.emit("newQuestion", {question: data.question});
+    goodAnswer(questions[data.idAsker][socket.id], data.response);
   });
 
   socket.on('answer', function(data){

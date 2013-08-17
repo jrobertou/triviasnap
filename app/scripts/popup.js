@@ -54,14 +54,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
-
 			callback.usergin(request.result);			
 		});	
 	
 		return false;
 	});
 
+	$(document).on('click', '.askhim', function(e) {
+		$('#askQuestion').append('<input type="hidden" value="'+$(this).data('id')+'" name="idtarget" />');
+		$('#userList').hide();
+		$('#askQuestion').show();
+	});
+
 });
+
+
 
 chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
