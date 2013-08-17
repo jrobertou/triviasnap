@@ -11,9 +11,8 @@
     <body>
         <!-- CHROME EXTENSION POPUP -->
 		<h2 id="myusername" style="display: none;"></h2>
-        <form class="username" action="usergin">
-			Username:<br/>
-			<input type="text" name="username"><br/>
+        <form action="usergin" class="username-form">
+            <input type="text" name="username" class="username" placeholder="Username">
 			<input type="submit" value="submit">
 		</form>
 
@@ -24,9 +23,8 @@
 		
 
 		<form id="askQuestion" action="question" style="display: none;">
-			Your question:<br/>
-			<input type="text" name="question" placeholder="question"><br/>
-			<input type="text" name="answer" placeholder="Answer">
+			<textarea type="text" class="question" name="question" placeholder="Question"></textarea>
+			<textarea type="text" class="answer" name="answer" placeholder="Answer"></textarea>
 			<input type="submit" value="send">
 		</form>
 
