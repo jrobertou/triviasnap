@@ -32,7 +32,7 @@ var callback = {
 			$('#askQuestion').hide();
 
 			$("#newQuestion").show();
-			$("#feedback").text(response.data.question);
+			$("#feedback").html(response.data.question+'?');
 		
 	}
 }
@@ -98,6 +98,23 @@ chrome.runtime.onMessage.addListener(
 			  iconUrl: "../images/icon-19.png"
 			}
 			chrome.notifications.create("newQuestion", opt, function(notificationId){});
+      	     
+        break;
+
+        case 'wronganwser':
+      	
+					$('#userList').hide();
+					$('#newQuestion').hide();
+					$('#askQuestion').hide();
+					$('#wrong-anwser').show();
+      	     
+        break;
+        case 'goodanwser':
+      	
+					$('#userList').hide();
+					$('#newQuestion').hide();
+					$('#askQuestion').hide();
+					$('#succes-anwser').show();
       	     
         break;
 

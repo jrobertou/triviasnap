@@ -22,6 +22,15 @@ body {
 p {
     color: #fff!important;
 }
+
+.success {
+    color: green!important;
+    text-align: center;
+}
+.wrong {
+    color: red!important;
+    text-align: center;
+}
 #myusername {
     background: #282828;
     color: #eee;
@@ -110,7 +119,7 @@ input.username {
     margin-left: 4px;
     padding: 4px;
     width: 184px;
-    height: 64px;
+    height: 80px;
 }
 
 .answer {
