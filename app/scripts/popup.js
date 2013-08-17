@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		e.preventDefault();
 		chrome.runtime.sendMessage({msg: $(this).attr('action'), form:$(this).serialize()},function(response){
 			if(response.success) {
-
-		  }
+				$('form[action="usergin"]').hide();
+				$("#askQuestion").show();
+		  	}
 		});
 		return false;
 	});
