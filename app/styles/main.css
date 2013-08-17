@@ -19,7 +19,9 @@ body {
 :focus {
     outline: 0;
 }
-
+p {
+    color: #fff!important;
+}
 #myusername {
     background: #282828;
     color: #eee;
