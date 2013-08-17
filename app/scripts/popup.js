@@ -18,11 +18,13 @@ var callback = {
 
 			var users = response.users,
 				htmlUsers = '';
-			for (var currentUser in users) {
-				htmlUsers +=  createuserlist(currentUser);
+			for (var i = 0, imax = users.length; i < imax; i++) {
+
+				if(users[i] && users[i].username)
+					htmlUsers +=  createuserlist(users[i]);
 			};
 			if(htmlUsers != '')
-				$("#askQuestion ul").html(htmlUsers);
+				$("#userList ul").html(htmlUsers);
 		}
 	}
 }
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	$('form').submit(function(e) {
 		e.preventDefault();
 
-		background.bg.checkUsername($(this).serialize());
+		background.bg.sendForm($(this).attr('action'), $(this).serializeObject());
 
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
@@ -43,12 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		return false;
 	});
 
-	chrome.runtime.onMessage.addListener(
-			function(request,sender,senderResponse){
-		var opt = {
-		  message: "Primary message to display",
-		}
-		chrome.notifications.create("newQuestion", opt, function(notificationId){});
-	});
+	// chrome.runtime.onMessage.addListener(
+	// 		function(request,sender,senderResponse){
+	// 	var opt = {
+	// 	  message: "Primary message to display",
+	// 	}
+	// 	chrome.notifications.create("newQuestion", opt, function(notificationId){});
+	// });
 
 });

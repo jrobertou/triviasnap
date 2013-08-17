@@ -17,22 +17,21 @@ var goodAnswer = function(right_answer, given_answer) {
 
 io.sockets.on('connection', function (socket) {
 
-  socket.on('usergin', function(data){ 
-    var exist = users.indexOf(data.username) != -1 ? true : false;
-    console.log(exist);
-    if(!exist){
-      var user = {};
-      user['id'] = socket.id;
-      user['username'] = data.username;
-      users.push(user);
-      socket.broadcast.emit("newBoy", {id: socket.id, username: data.username});
-      socket.emit("userExist", {result: exist, myusername: data.username, users: users});
+  socket.on('usergin', function(data){
+    if(data && data.username){
+      var exist = users.indexOf(data.username) != -1 ? true : false;
+      if(!exist){
+        var user = {};
+        user['id'] = socket.id;
+        user['username'] = data.username;
+        users.push(user);
+        socket.broadcast.emit("newBoy", {id: socket.id, username: data.username});
+        socket.emit("userExist", {result: exist, myusername: data.username, users: users});
+      }
+      else {
+        socket.emit("userExist", {result: exist});
+      }
     }
-    else {
-      socket.emit("userExist", {result: exist});
-    }
-
-    console.log(users[socket.id]);
   });
 
   socket.on('question_submit', function(data){

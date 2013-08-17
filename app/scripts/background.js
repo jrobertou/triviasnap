@@ -12,15 +12,14 @@ var socket = io.connect("http://localhost:3000/"),
 //   }
   
 // });
+socket.on("userExist", function(data){
+  chrome.runtime.sendMessage({result: data});
+}); 
 
 var bg = {
-	checkUsername: function(username){
-		socket.emit("usergin", {username: username});
-
-		socket.on("userExist", function(data){
-			chrome.runtime.sendMessage({result: data});
-		});	
-	}
+  sendForm: function(action, data) {
+    socket.emit(action, data);
+  }
 }
 // chrome.runtime.onMessage.addListener(
 // 	function(request,sender,senderResponse){
