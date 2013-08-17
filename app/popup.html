@@ -4,40 +4,20 @@
         <link href="styles/main.css" rel="stylesheet">
         <!-- build:js scripts/popup.js -->
         <script src="scripts/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
         <script src="scripts/popup.js"></script>
         <!-- endbuild -->
     </head>
     <body>
         <!-- CHROME EXTENSION POPUP -->
+		<h2 id="myusername" style="display: none;"></h2>
         <form action="usergin" class="username-form">
-			<input type="text" name="username" class="username" placeholder="Username">
+            <input type="text" name="username" class="username" placeholder="Username">
 			<input type="submit" value="submit">
 		</form>
 
 		<div id="userList" style="display: none;">
 			<ul>
-              <li class="title">USERNAME</li>
-			  <li>
-			  	<p>
-                    Username VS You<br/>
-                    <span class="score">1-3</span>
-                </p>
-				<button>Ask</button>
-			  </li>
-			  <li>
-			  	<p>
-                    Username VS You<br/>
-                    <span class="score">1-3</span>
-                </p>
-				<button>Ask</button>
-			  </li>
-			  <li>
-			  	<p>
-                    Username VS You<br/>
-			  	    <span class="score">1-3</span>
-                </p>
-				<button>Ask</button>
-			  </li>
 			</ul>
 		</div>
 		
