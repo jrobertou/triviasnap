@@ -19,7 +19,7 @@ var callback = {
 			var users = response.users,
 				htmlUsers = '';
 			for (var currentUser in users) {
-				htmlUsers +=  createuserlist(currentUser[i]);
+				htmlUsers +=  createuserlist(currentUser);
 			};
 			if(htmlUsers != '')
 				$("#askQuestion ul").html(htmlUsers);
@@ -38,10 +38,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
 				callback.usergin(request.result);
-		});
-
-		
+		});	
 	
 		return false;
 	});
+
+	chrome.runtime.onMessage.addListener(
+			function(request,sender,senderResponse){
+		var opt = {
+		  message: "Primary message to display",
+		}
+		chrome.notifications.create("newQuestion", opt, function(notificationId){});
+	});
+
 });
