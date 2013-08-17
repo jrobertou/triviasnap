@@ -30,7 +30,6 @@ var callback = {
 			$('form[action="usergin"]').hide();
 			$('#userList').hide();
 			$('#askQuestion').hide();
-			$('#myusername').html(response.myusername).show();
 
 			$("#newQuestion").show();
 			$("#newQuestion").find("p").text(response.data.question);
@@ -69,7 +68,8 @@ chrome.runtime.onMessage.addListener(
 
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
-			callback.usergin(request.result);			
+				if(request.msg != 'newQuestion')
+					callback.usergin(request.result);			
 		});	
 	
 		return false;
@@ -92,8 +92,10 @@ chrome.runtime.onMessage.addListener(
 
       case 'newQuestion':
       	var opt = {
+      		type: "basic",
+      			title: "TriviaSnap",
 			  message: "New question!",
-			  iconUrl: ""
+			  iconUrl: "../images/icon-19.png"
 			}
 			chrome.notifications.create("newQuestion", opt, function(notificationId){});
       	     
