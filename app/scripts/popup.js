@@ -5,8 +5,7 @@ var background = chrome.extension.getBackgroundPage();
 var createuserlist = function(data) {
 	return '<li><p>'+
 		data.username+' VS You'+
-		'<span class="score">1-3</span></p><button>Ask</button></li>';
-
+		'<span class="score">1-3</span></p><button data-id="' + data.id + '" class="askhim">Ask</button></li>';
 }
 var callback = {
 	usergin: function(response) {	
@@ -17,12 +16,13 @@ var callback = {
 
 			var users = response.users,
 				htmlUsers = '';
-			for (var currentUser in users) {
-				if(data && data.username)
-				htmlUsers +=  createuserlist(currentUser);
+			for (var i = 0, imax = users.length; i < imax; i++) {
+
+				if(users[i] && users[i].username)
+					htmlUsers +=  createuserlist(users[i]);
 			};
 			if(htmlUsers != '')
-				$("#askQuestion ul").html(htmlUsers);
+				$("#userList ul").html(htmlUsers);
 		}
 	}
 }
@@ -38,10 +38,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
 				callback.usergin(request.result);
-		});
-
-		
+		});	
 	
 		return false;
 	});
+
+	// chrome.runtime.onMessage.addListener(
+	// 		function(request,sender,senderResponse){
+	// 	var opt = {
+	// 	  message: "Primary message to display",
+	// 	}
+	// 	chrome.notifications.create("newQuestion", opt, function(notificationId){});
+	// });
+
 });
