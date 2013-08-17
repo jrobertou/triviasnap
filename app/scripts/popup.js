@@ -5,7 +5,7 @@ var background = chrome.extension.getBackgroundPage();
 var createuserlist = function(data) {
 	return '<li>'+
 		data.username+' VS You<br/>'+
-		'0 + 0'+
+		//'0 - 0'+
 		'<button data-id="' + data.id + '" class="askhim">Ask question to him</button>'+
 		'</li>';
 }
@@ -40,9 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
 				callback.usergin(request.result);
-		});	
+		});
 	
 		return false;
+	});
+
+	$('.askhim').on('click', function(e) {
+		$('#askQuestion').append('<input type="hidden" value="'+$(this).data('id')+'" name="idtarget" />');
+		$('#userList').hide();
+		$('#askQuestion').show();
 	});
 
 	// chrome.runtime.onMessage.addListener(
