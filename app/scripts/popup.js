@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		chrome.runtime.sendMessage({msg: $(this).attr('action'), form:$(this).serialize()},function(response){
 			if(response.success) {
 				$('form[action="usergin"]').hide();
-				$("#askQuestion").show();
+				$('#userList').show();
+				// $("#askQuestion").show();
 		  	}
 		});
 		return false;

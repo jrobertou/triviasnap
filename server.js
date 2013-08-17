@@ -17,18 +17,17 @@ var goodAnswer = function(right_answer, given_answer) {
 
 io.sockets.on('connection', function (socket) {
 
-
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-
   socket.on('usergin', function(data){    
     var exist = users.indexOf(data.username) !== -1 ? true : false;
-    socket.emit("userExist", {result: exist});
 
-    if(!exist)
+    if(!exist){
       users[socket.id] = data.username;
+      socket.broadcast.emit("newBoy", {id: socket.id, username: data.username});
+      socket.emit("userExist", {result: exist, users: users});
+    }
+    else {
+      socket.emit("userExist", {result: exist});
+    }
 
     console.log(users[socket.id]);
   });
