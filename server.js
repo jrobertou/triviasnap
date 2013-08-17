@@ -42,7 +42,7 @@ io.sockets.on('connection', function (socket) {
     question.answer = data.answer;
     questions.push(question);
     // questions[socket.id][data.idtarget] = {question: data.question, answer: data.answer};
-    io.sockets.socket(data.idtarget).emit('newQuestion', {question: question, idAsker: socket.id});
+    io.sockets.socket(data.idtarget).emit('newQuestion', {question: question.question, idAsker: socket.id});
   });
 
   socket.on('question_submit', function(data){
@@ -50,7 +50,12 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('answer', function(data){
-    awser_checked = goodAnswer(questions[data.idAsker][socket.id].answer, data.answer);
+    for (var i = 0, imax = questions.length; i < imax; i++){
+      if(questions[i].question.socketid == data.idAsker && questions[i].question.idtarget == socket.id){
+        awser_checked = questions[i].question.answer;
+      }  
+    }
+    // awser_checked = goodAnswer(questions[data.idAsker][socket.id].answer, data.answer);
     socket.emit('result', function(data){response: awser_checked});
   });
 

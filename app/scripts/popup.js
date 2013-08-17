@@ -46,6 +46,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		
 	// });
+chrome.runtime.onMessage.addListener(
+			function(request,sender,senderResponse){
+
+	 switch(request.msg) {
+
+      case 'newQuestion':
+      	callback.newQuestion(request);
+        break;
+
+      default:
+        break;
+    }
+  
+	
+});
 
 	$('form').submit(function(e) {
 		e.preventDefault();
@@ -78,11 +93,10 @@ chrome.runtime.onMessage.addListener(
       case 'newQuestion':
       	var opt = {
 			  message: "New question!",
+			  iconUrl: ""
 			}
 			chrome.notifications.create("newQuestion", opt, function(notificationId){});
-      	document.addEventListener('DOMContentLoaded', function () {
-      		callback.newQuestion(request);
-		});      
+      	     
         break;
 
       default:
