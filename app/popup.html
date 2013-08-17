@@ -9,33 +9,32 @@
     </head>
     <body>
         <!-- CHROME EXTENSION POPUP -->
+		<h2 id="myusername" style="display: none;"></h2>
         <form action="usergin">
 			Username:<br/>
 			<input type="text" name="username"><br/>
 			<input type="submit" value="submit">
 		</form>
 
-		<form action="userList" style="display: none;">
-			<h2>My username</h2>
+		<div id="userList" style="display: none;">
 			<ul >
 			  <li>
 			  	Username VS You<br/>
 			  	1-3
-				<button type="submit">Ask question< to him</button>
+				<button data-id="" class="askhim">Ask question to him</button>
 			  </li>
 			  <li>
 			  	Username VS You<br/>
 			  	1-3
-				<button type="submit">Ask question< to him</button>
+				<button data-id="" class="askhim">Ask question to him</button>
 			  </li>
 			  <li>
 			  	Username VS You<br/>
 			  	1-3
-			  	<input type="hidden" value="40"/>
-				<button type="submit">Ask question< to him</button>
+				<button data-id="" class="askhim">Ask question to him</button>
 			  </li>
 			</ul>
-		</form>
+		</div>
 		
 
 		<form id="askQuestion" action="question" style="display: none;">
