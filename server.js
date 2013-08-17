@@ -19,7 +19,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('usergin', function(data){    
     var exist = users.indexOf(data.username) !== -1 ? true : false;
-
+    console.log(exist);
     if(!exist){
       users[socket.id] = data.username;
       socket.broadcast.emit("newBoy", {id: socket.id, username: data.username});
