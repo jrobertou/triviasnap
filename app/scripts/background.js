@@ -1,34 +1,46 @@
 'use strict';
 
-var socket = io.connect("http://localhost:3000/");
+var socket = io.connect("http://localhost:3000/"),
+  myusername = null;
+
+socket.on("userExist", function(data){
+  if(data.result){
+    myusername = data.myusername
+    chrome.runtime.sendMessage({msg: 'res_userExist', success: true, myusername: myusername, users: data.users});
+  } else{
+    chrome.runtime.sendMessage({msg: 'res_userExist', success: false, myusername: myusername, users: data.users});
+  }
+  
+});
 
 chrome.runtime.onMessage.addListener(
-	function(request,sender,senderResponse){
+  function(request,sender,senderResponse){
 
-		if(request.msg === "usergin"){
-			socket.emit("usergin", {username: request.form});
+    switch(request.msg) {
+      case 'getmyusername':
+          senderResponse({success: myusername, myusername: myusername});
+        break;
 
-			socket.on("userExist", function(data){
-				if(data.result){
-					senderResponse({success: true, users: data.users});
-				} else{
-					senderResponse({success: false});
-				}
-				
-			});
+      case 'usergin':
+        socket.emit("usergin", {username: request.form});
+        break;
 
-		} else if (request.msg === "question"){
-			socket.emit("usergin", {question: request.form.question, answer: request.form.answer});
+      case 'question':
+        socket.emit("usergin", {question: request.form.question, answer: request.form.answer});
+        socket.on("", function(data){
+          senderResponse({success: true});
+        });
+        break;
 
-			socket.on("", function(data){
-				senderResponse({success: true});
-			});
-		} else if (request.msg === "userList"){
-			socket.emit("usergin", {question: request.form.question, answer: request.form.answer});
+      case 'userList':
+        socket.emit("usergin", {question: request.form.question, answer: request.form.answer});
+        socket.on("", function(data){
+          senderResponse({success: true});
+        });
+        break;
 
-			socket.on("", function(data){
-				senderResponse({success: true});
-			});
-		} 
-	}
+      default:
+        break;
+    }
+  }
 );
