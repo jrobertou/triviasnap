@@ -35,6 +35,9 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('question_send', function(data){
+    console.log("*****************************");
+    console.log(data);
+    questions[socket.id] = new Array();
     questions[socket.id][data.idtarget] = {question: data.question, answer: data.answer};
     io.sockets.socket(data.id).emit('newQuestion', {question: question, idAsker: socket.id});
   });
