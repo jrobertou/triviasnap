@@ -19,7 +19,8 @@ var callback = {
 			var users = response.users,
 				htmlUsers = '';
 			for (var currentUser in users) {
-				htmlUsers +=  createuserlist(currentUser[i]);
+				if(data && data.username)
+				htmlUsers +=  createuserlist(currentUser);
 			};
 			if(htmlUsers != '')
 				$("#askQuestion ul").html(htmlUsers);
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	$('form').submit(function(e) {
 		e.preventDefault();
 
-		background.bg.checkUsername($(this).serialize());
+		background.bg.sendForm($(this).attr('action'), $(this).serializeObject());
 
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
