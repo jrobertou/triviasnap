@@ -9,5 +9,9 @@ chrome.runtime.onMessage.addListener(
 		if(request.msg==="usergin"){
 			console.log("receive from socket server: "+JSON.stringify(request.form));
 		}
+
+		var socket = io.connect("http://localhost:3000/");
+
+		socket.emit("usergin", {username: request.form})
 	}
 );

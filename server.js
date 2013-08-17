@@ -29,6 +29,8 @@ io.sockets.on('connection', function (socket) {
 
     if(!exist)
       users[socket.id] = data.username;
+
+    console.log(users[socket.id]);
   });
 
   socket.on('question_submit', function(data){
