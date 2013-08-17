@@ -6,7 +6,7 @@ var createuserlist = function(data) {
 	return '<li>'+
 		data.username+' VS You<br/>'+
 		'0 + 0'+
-		'<button data-id="data.id" class="askhim">Ask question to him</button>'+
+		'<button data-id="' + data.id + '" class="askhim">Ask question to him</button>'+
 		'</li>';
 }
 var callback = {
