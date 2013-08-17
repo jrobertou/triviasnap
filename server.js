@@ -35,8 +35,14 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('question_send', function(data){
-    questions[socket.id][data.idtarget] = {question: data.question, answer: data.answer};
-    io.sockets.socket(data.id).emit('newQuestion', {question: question, idAsker: socket.id});
+    var question = {};
+    question.socketid = socket.id;
+    question.idtarget = data.idtarget;
+    question.question = data.question;
+    question.answer = data.answer;
+    questions.push(question);
+    // questions[socket.id][data.idtarget] = {question: data.question, answer: data.answer};
+    io.sockets.socket(data.idtarget).emit('newQuestion', {question: question, idAsker: socket.id});
   });
 
   socket.on('question_submit', function(data){
