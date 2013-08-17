@@ -32,7 +32,7 @@ var callback = {
 			$('#askQuestion').hide();
 
 			$("#newQuestion").show();
-			$("#feedback").text(response.data.question);
+			$("#feedback").html(response.data.question+'?');
 		
 	}
 }

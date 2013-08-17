@@ -28,7 +28,8 @@ p {
     text-align: center;
 }
 .wrong {
-    color: red;
+    color: red!important;
+    text-align: center;
 }
 #myusername {
     background: #282828;
