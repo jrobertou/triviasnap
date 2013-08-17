@@ -91,3 +91,26 @@ input.username {
     margin: 0;
     width: 130px;
 }
+
+#askQuestion {
+    overflow: hidden;
+}
+
+#askQuestion input[type=submit] {
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.question, .answer {
+    background-color: #eee;
+    border: none;
+    margin-top: 4px;
+    margin-left: 4px;
+    padding: 4px;
+    width: 184px;
+    height: 64px;
+}
+
+.answer {
+    margin-bottom: 4px;
+}
