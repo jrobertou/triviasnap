@@ -6,8 +6,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 chrome.runtime.onMessage.addListener(
 	function(request,sender,senderResponse){
-		if(request.msg==="form"){
-			console.log("receive from socket server: "+JSON.stringify(form));
+		if(request.msg==="usergin"){
+			console.log("receive from socket server: "+JSON.stringify(request.form));
 		}
 	}
 );
