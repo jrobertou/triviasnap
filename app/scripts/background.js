@@ -17,7 +17,15 @@ socket.on("userExist", function(data){
 }); 
 
 socket.on("newQuestion", function(data){
-	chrome.runtime.sendMessage({msg: "newQuestion", data: data});
+  chrome.runtime.sendMessage({msg: "newQuestion", data: data});
+});
+
+
+socket.on("result", function(data){
+  if(data.response)
+    chrome.runtime.sendMessage({msg: "goodanwser"});
+  else
+    chrome.runtime.sendMessage({msg: "wronganwser"});
 });
 
 var bg = {

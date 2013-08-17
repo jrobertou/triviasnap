@@ -46,16 +46,18 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('question_submit', function(data){
+
     goodAnswer(questions[data.idAsker][socket.id], data.response);
   });
 
   socket.on('answer', function(data){
+    var awser_checked;
     for (var i = 0, imax = questions.length; i < imax; i++){
       if(questions[i].question.socketid == data.idAsker && questions[i].question.idtarget == socket.id){
         awser_checked = questions[i].question.answer;
       }  
     }
-    // awser_checked = goodAnswer(questions[data.idAsker][socket.id].answer, data.answer);
+    awser_checked = goodAnswer(awser_checked, data.answer);
     socket.emit('result', function(data){response: awser_checked});
   });
 

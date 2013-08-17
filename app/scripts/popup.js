@@ -101,6 +101,23 @@ chrome.runtime.onMessage.addListener(
       	     
         break;
 
+        case 'wronganwser':
+      	
+					$('#userList').hide();
+					$('#newQuestion').hide();
+					$('#askQuestion').hide();
+					$('#wrong-anwser').show();
+      	     
+        break;
+        case 'goodanwser':
+      	
+					$('#userList').hide();
+					$('#newQuestion').hide();
+					$('#askQuestion').hide();
+					$('#succes-anwser').show();
+      	     
+        break;
+
       default:
         break;
     }
