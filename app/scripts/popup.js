@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		return false;
 	});
 
-	$('.askhim').on('click', function(e) {
+	$(document).on('click', '.askhim', function(e) {
 		$('#askQuestion').append('<input type="hidden" value="'+$(this).data('id')+'" name="idtarget" />');
 		$('#userList').hide();
 		$('#askQuestion').show();
