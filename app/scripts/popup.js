@@ -26,31 +26,63 @@ var callback = {
 			if(htmlUsers != '')
 				$("#userList ul").html(htmlUsers);
 		}
+	},
+
+	newQuestion: function(response) {		
+			$('form[action="usergin"]').hide();
+			$('#userList').hide();
+			$('#askQuestion').hide();
+			$('#myusername').html(response.myusername).show();
+
+			$("#newQuestion").show();
+			$("#newQuestion").find("p").text(response.data.question);
+		
 	}
 }
 document.addEventListener('DOMContentLoaded', function () {
 
 	// chrome.runtime.sendMessage({msg: 'getmyusername'}, );
 
+	// chrome.runtime.onMessage.addListener(
+	// 		function(request,sender,senderResponse){
+
+		
+	// });
+
 	$('form').submit(function(e) {
 		e.preventDefault();
 
-		background.bg.sendForm($(this).attr('action'), $(this).serializeObject());
+		background.bg.sendForm($(this).attr('action'), $(this).serializeObject());	
 
 		chrome.runtime.onMessage.addListener(
 			function(request,sender,senderResponse){
-				callback.usergin(request.result);
+
+			callback.usergin(request.result);			
 		});	
 	
 		return false;
 	});
 
-	// chrome.runtime.onMessage.addListener(
-	// 		function(request,sender,senderResponse){
-	// 	var opt = {
-	// 	  message: "Primary message to display",
-	// 	}
-	// 	chrome.notifications.create("newQuestion", opt, function(notificationId){});
-	// });
+});
 
+chrome.runtime.onMessage.addListener(
+			function(request,sender,senderResponse){
+
+	 switch(request.msg) {
+
+      case 'newQuestion':
+      	var opt = {
+			  message: "New question!",
+			}
+			chrome.notifications.create("newQuestion", opt, function(notificationId){});
+      	document.addEventListener('DOMContentLoaded', function () {
+      		callback.newQuestion(request);
+		});      
+        break;
+
+      default:
+        break;
+    }
+  
+	
 });

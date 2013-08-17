@@ -18,22 +18,7 @@
 		</form>
 
 		<div id="userList" style="display: none;">
-			<ul >
-			  <li>
-			  	Username VS You<br/>
-			  	1-3
-				<button data-id="" class="askhim">Ask question to him</button>
-			  </li>
-			  <li>
-			  	Username VS You<br/>
-			  	1-3
-				<button data-id="" class="askhim">Ask question to him</button>
-			  </li>
-			  <li>
-			  	Username VS You<br/>
-			  	1-3
-				<button data-id="" class="askhim">Ask question to him</button>
-			  </li>
+			<ul>
 			</ul>
 		</div>
 		
@@ -42,6 +27,13 @@
 			Your question:<br/>
 			<input type="text" name="question" placeholder="question"><br/>
 			<input type="text" name="answer" placeholder="Answer">
+			<input type="submit" value="send">
+		</form>
+
+		<form id="newQuestion" action="answer" style="display: none;">
+			Question for you:<br/>
+			<p></p>
+			<input type="text" name="answer" placeholder="answer">
 			<input type="submit" value="send">
 		</form>
     </body>

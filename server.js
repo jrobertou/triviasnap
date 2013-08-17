@@ -35,7 +35,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('question_submit', function(data){
-    questions[socket.id][data.idTarget] = {question: data.question, answer: data.answer};
+    socket.emit("newQuestion", {question: data.question});
   });
 
   socket.on('answer', function(data){

@@ -16,6 +16,10 @@ socket.on("userExist", function(data){
   chrome.runtime.sendMessage({result: data});
 }); 
 
+socket.on("newQuestion", function(data){
+	chrome.runtime.sendMessage({msg: "newQuestion", data: data});
+});
+
 var bg = {
   sendForm: function(action, data) {
     socket.emit(action, data);
