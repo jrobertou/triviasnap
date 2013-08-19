@@ -125,3 +125,7 @@ input.username {
 .answer {
     margin-bottom: 4px;
 }
+
+#newQuestion {
+    min-height: 167px;
+}
